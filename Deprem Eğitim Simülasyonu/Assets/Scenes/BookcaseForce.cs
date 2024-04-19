@@ -4,27 +4,41 @@ using UnityEngine;
 
 public class BookcaseForce : MonoBehaviour
 {
-    public float speed = 1.0f; //how fast it shakes
-    public float amount = 1.0f; //how much it shakes
+    public float shakeMagnitude = 0.5f;
+    public float shakeSpeed = 20f;
+
+    private Vector3 initialPosition;
 
     public bool test = true;
     Rigidbody b_rigidbody;
-    public float forceMagnitude = 20f;
+    public float forceMagnitude = 200f;
     // Start is called before the first frame update
     void Start()
     {
         b_rigidbody = GetComponent<Rigidbody>();
+        initialPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            float shakeAmountX = Random.Range(-1f, 1f) * shakeMagnitude;
+            float shakeAmountY = Random.Range(-1f, 1f) * shakeMagnitude;
+
+            Vector3 newPos = initialPosition + new Vector3(shakeAmountX, shakeAmountY, 0);
+            transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * shakeSpeed);
+        }
+
         if (test)
         {
-            Debug.Log("sikiþ");
-            //transform.position.x = Mathf.Sin(Time.time * speed) * amount;
-            //b_rigidbody.AddForce(Vector3.left * forceMagnitude);
-            test = false;
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                Vector3 localForward = transform.TransformDirection(Vector3.back);
+                b_rigidbody.AddForce(localForward * forceMagnitude);
+                //b_rigidbody.AddForce(Vector3.left * forceMagnitude);
+            }
         }
     }
 }
