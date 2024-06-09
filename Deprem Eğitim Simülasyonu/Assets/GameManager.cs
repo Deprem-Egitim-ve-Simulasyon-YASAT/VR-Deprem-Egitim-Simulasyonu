@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public float timeValue;
 
+    [Header("Hangi Sahne")]
+    public bool training;
+    public bool simulation;
+
     public static GameManager instance;
     private void Awake()
     {
