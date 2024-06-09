@@ -22,17 +22,10 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.timeValue > 0)
+        if (GameManager.instance.simulationMode)
         {
-            GameManager.instance.timeValue -= Time.deltaTime;
+            SimulationCoundown();
         }
-
-        else
-        {
-            GameManager.instance.timeValue = 0;
-        }
-
-        DisplayTime(GameManager.instance.timeValue);
     }
     void DisplayTime(float timeToDisplay)
     {
@@ -48,5 +41,20 @@ public class Timer : MonoBehaviour
         // Zamaný "MM:SS" formatýnda gösterin
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
+    }
+
+    void SimulationCoundown()
+    {
+        if (GameManager.instance.timeValue > 0)
+        {
+            GameManager.instance.timeValue -= Time.deltaTime;
+        }
+
+        else
+        {
+            GameManager.instance.timeValue = 0;
+        }
+
+        DisplayTime(GameManager.instance.timeValue);
     }
 }
