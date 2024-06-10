@@ -7,6 +7,8 @@ TagManager:
   - Anchor
   - Material
   - Selected
+  - GreenZone
+  - PlayerTrigger
   layers:
   - Default
   - TransparentFX

@@ -16,7 +16,7 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class Timer : MonoBehaviour
     {
         if (GameManager.instance.simulationMode)
         {
-            SimulationCoundown();
+            SimulationCountdown();
         }
     }
     void DisplayTime(float timeToDisplay)
@@ -43,7 +43,7 @@ public class Timer : MonoBehaviour
 
     }
 
-    void SimulationCoundown()
+    void SimulationCountdown()
     {
         if (GameManager.instance.timeValue > 0)
         {
